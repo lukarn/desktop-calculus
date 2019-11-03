@@ -1,7 +1,7 @@
 import json
 import time
 import csv
-from commons.methods import *
+
 from commons.param import *
 from pages.Calc import *
 
@@ -17,6 +17,10 @@ with open("../testdata/add_test_long.json", "r") as read_file:
 with open("../testdata/add.csv", "r") as f:
     reader = csv.reader(f)
     add_csv = list(reader)
+
+with open("../testdata/med2.csv", "r") as f:
+    reader = csv.reader(f)
+    med2_csv = list(reader)
 
 # page object for all tests
 calc = Calc("Calculus")
@@ -69,19 +73,16 @@ class TestCalc3Pytest:
     def test_10add(self):
         assert calc.add_2(data["num1"][4], data["num2"][4]) == data["add"][4], "test failed"
 
-    # def test_11add(self):
-    #     # failure test - screenshot after failure
-    #     send_keys(random_pesel("m"))
-    #     calc.click_plus()
-    #     send_keys(random_pesel("w"))
-    #     calc.click_equal()
-    #     assert calc.get_result() == data["add"][4], "test failed"
-
     def test_12add(self):
         for i in range(0, 2):  # (0, 29) max
             assert calc.add_2(data_long["num1"][i], data_long["num2"][i]) == data_long["add"][i], "test failed"
 
     def test_13add(self):
-        for i in range(0, 29):  # (0, 29) max
+        for i in range(0, 2):  # (0, 29) max
             print(add_csv[i][0], "+", add_csv[i][1], "= ", add_csv[i][2])
             assert calc.add_2(add_csv[i][0], add_csv[i][1]) == add_csv[i][2], "test failed"
+
+    def test_14med2(self):
+        for i in range(0, 29):  # (0, 29) max
+            print(med2_csv[i][1], " ; ", med2_csv[i][3], "  median = ", med2_csv[i][4])
+            assert calc.med_2(med2_csv[i][1], med2_csv[i][3]) == med2_csv[i][4], "test failed"

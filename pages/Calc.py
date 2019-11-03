@@ -47,6 +47,12 @@ class Calc:
     def wyczysc_his(self):
         return self.window_name.child_window(title="Wyczyść")
 
+    def med(self):
+        return self.window_name.child_window(title="Med")
+
+    def p_nawias(self):
+        return self.window_name.child_window(title=")")
+
     # END OF LOCATORS !!!!!!!!!!!!!!!!!!!!!!!!!
 
     # parameterized constructor
@@ -101,13 +107,32 @@ class Calc:
     def click_wyczysc(self):
         self.wyczysc().click()
 
-    def click_wyczysc2(self):
-        self.wyczysc2().click()
+    def click_wyczysc_his(self):
+        self.wyczysc_his().click()
+
+    def click_med(self):
+        self.med().click()
+
+    def click_p_nawias(self):
+        self.p_nawias().click()
+
+    def click_rownasie(self):
+        self.rownasie().click()
 
     def add_2(self, num1, num2):
-        self.wyczysc().click()
+        self.click_wyczysc()
         send_keys(num1)
         self.click_plus()
         send_keys(num2)
-        self.rownasie().click()
+        self.click_rownasie()
+        return self.get_result()
+
+    def med_2(self, num1, num2):
+        self.click_wyczysc()
+        self.click_med()
+        send_keys(num1)
+        send_keys(";")
+        send_keys(num2)
+        self.click_p_nawias()
+        self.click_rownasie()
         return self.get_result()
