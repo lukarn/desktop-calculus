@@ -22,6 +22,10 @@ with open("../testdata/med2.csv", "r") as f:
     reader = csv.reader(f)
     med2_csv = list(reader)
 
+with open("../testdata/med5.csv", "r") as f:
+    reader = csv.reader(f)
+    med5_csv = list(reader)
+
 # page object for all tests
 calc = Calc("Calculus")
 
@@ -83,6 +87,13 @@ class TestCalc3Pytest:
             assert calc.add_2(add_csv[i][0], add_csv[i][1]) == add_csv[i][2], "test failed"
 
     def test_14med2(self):
-        for i in range(0, 29):  # (0, 29) max
+        for i in range(0, 3):  # (0, 29) max
             print(med2_csv[i][1], " ; ", med2_csv[i][3], "  median = ", med2_csv[i][4])
             assert calc.med_2(med2_csv[i][1], med2_csv[i][3]) == med2_csv[i][4], "test failed"
+
+    def test_15med5(self):
+        for i in range(0, 29):  # (0, 29) max
+            print(med5_csv[i][1], " ; ", med5_csv[i][3], " ; ", med5_csv[i][5], " ; ", med5_csv[i][7], " ; ",
+                  med5_csv[i][9], "  median = ", med5_csv[i][10])
+            assert calc.med_5(med5_csv[i][1], med5_csv[i][3], med5_csv[i][5], med5_csv[i][7],
+                              med5_csv[i][9]) == med5_csv[i][10], "test failed"

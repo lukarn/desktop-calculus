@@ -61,6 +61,10 @@ class Calc:
 
     def get_result(self):
         result = self.window_name.child_window(auto_id="tbWynik").texts()
+        assert result[0] == result[1], ">>>>>>>>>>>>>>> somethig wrong with result - check get_result mehod in Calc.py"
+        # if result[0] != result[1]:
+        #     print(">>>>>>>>>>>>>>> somethig wrong with result - check get_result mehod in Calc.py")
+        #     print(result[0], " 1= ", result[1])
         result = result[0]
         return result
 
@@ -133,6 +137,22 @@ class Calc:
         send_keys(num1)
         send_keys(";")
         send_keys(num2)
+        self.click_p_nawias()
+        self.click_rownasie()
+        return self.get_result()
+
+    def med_5(self, num1, num2, num3, num4, num5):
+        self.click_wyczysc()
+        self.click_med()
+        send_keys(num1)
+        send_keys(";")
+        send_keys(num2)
+        send_keys(";")
+        send_keys(num3)
+        send_keys(";")
+        send_keys(num4)
+        send_keys(";")
+        send_keys(num5)
         self.click_p_nawias()
         self.click_rownasie()
         return self.get_result()
